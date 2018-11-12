@@ -1,10 +1,17 @@
 <div class="row">
     <div class="col-sm-12">
-        <ul class="nav nav-pills nav-justified">
-            <li role="presentation" class="active"><a href="<?php echo APP_URL . "transacciones/index"; ?>">Transacciones</a>
-            </li>
-            <li role="presentation"><a href="<?php echo APP_URL . "categorias/index"; ?>">Categorías</a></li>
-            <li role="presentation"><a href="<?php echo APP_URL . "cuentas/index"; ?>">Cuentas</a></li>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Money Tracking</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="<?php echo APP_URL . "transacciones/index"; ?>">Listado de transacciones</a></li>
+                    <li><a href="<?php echo APP_URL . "cuentas/index"; ?>">Listado de cuentas</a></li>
+                    <li><a href="<?php echo APP_URL . "categorias/index"; ?>">Listado de categorías</a></li>
+                </ul>
+            </div>
+        </nav>
         </ul>
         <div class="col-sm-8"><h3>Listado de transacciones</h3></div>
     </div>
@@ -54,7 +61,7 @@
                     <a href="<?php echo APP_URL . "transacciones/editar/" . $transaccion["id"]; ?>">
                         <span class="glyphicon glyphicon-edit"> </span>
                     </a> |
-                    <a onclick="if(!confirm('¿Desea eliminar esta transacción?')) return false;"
+                    <a onclick="if(!confirm('¿Desea eliminar la transacción seleccionada?')) return false;"
                        href="<?php echo APP_URL . "transacciones/eliminar/" . $transaccion["id"]; ?>">
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>
@@ -86,8 +93,8 @@
         <td><?php
             $formattedNum = number_format($suma * -1, 2);
             echo
-            '<span class="label label-success">'
-            ."$ &nbsp;".$formattedNum .'</span>';
+                '<span class="label label-success">'
+                . "$ &nbsp;" . $formattedNum . '</span>';
             ?>
         </td>
         <td>
@@ -95,22 +102,22 @@
             $formattedNum = number_format($suma2, 2);
             echo
                 '<span class="label label-danger">'
-                ."-$ &nbsp;".$formattedNum.'</span>';
+                . "-$ &nbsp;" . $formattedNum . '</span>';
             ?>
         </td>
         <td>
             <?php
             $balance = ($suma * -1) + ($suma2 * -1);
-            if ($balance < 0){
-                $formattedNum = number_format($balance *-1, 2);
+            if ($balance < 0) {
+                $formattedNum = number_format($balance * -1, 2);
                 echo
                     '<span class="label label-danger">'
-                    ."-$ &nbsp;".$formattedNum.'</span>';
-            }else{
-                $formattedNum = number_format($balance *1, 2);
+                    . "-$ &nbsp;" . $formattedNum . '</span>';
+            } else {
+                $formattedNum = number_format($balance * 1, 2);
                 echo
                     '<span class="label label-success">'
-                    ."$ &nbsp;".$formattedNum.'</span>';
+                    . "$ &nbsp;" . $formattedNum . '</span>';
             }
             ?>
         </td>

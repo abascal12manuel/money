@@ -1,10 +1,17 @@
 <div class="row">
     <div class="col-sm-12">
-        <ul class="nav nav-pills nav-justified">
-            <li role="presentation"><a href="<?php echo APP_URL . "transacciones/index"; ?>">Transacciones</a></li>
-            <li role="presentation"><a href="<?php echo APP_URL . "categorias/index"; ?>">Categorías</a></li>
-            <li role="presentation" class="active"><a href="<?php echo APP_URL . "cuentas/index"; ?>">Cuentas</a></li>
-        </ul>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Money Tracking</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="<?php echo APP_URL . "transacciones/index"; ?>">Listado de transacciones</a></li>
+                    <li class="active"><a href="<?php echo APP_URL . "cuentas/index"; ?>">Listado de cuentas</a></li>
+                    <li><a href="<?php echo APP_URL . "categorias/index"; ?>">Listado de categorías</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
     <div class="col-sm-8"><h3>Listado de cuentas</h3></div>
 </div>
@@ -26,7 +33,7 @@
                     <a href="<?php echo APP_URL . "cuentas/editar/" . $cuenta["id"]; ?>">
                         <span class="glyphicon glyphicon-edit"> </span>
                     </a> |
-                    <a onclick="if(!confirm('¿Desea eliminar esta cuenta?')) return false;"
+                    <a onclick="if(!confirm('¿Desea eliminar la cuenta seleccionada?')) return false;"
                        href="<?php echo APP_URL . "cuentas/eliminar/" . $cuenta["id"]; ?>">
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>

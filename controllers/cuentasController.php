@@ -27,7 +27,7 @@ class cuentasController extends AppController
         if ($_POST) {
             if (empty($_POST['name']) || $_POST['name'] == "") {
                 $this->_messages->warning(
-                    'No ha definido la cuenta',
+                    'No ha llenado la información de la cuenta',
                     $this->redirect(array("controller" => "cuentas", "action" => "agregar"))
                 );
                 return;
@@ -36,7 +36,7 @@ class cuentasController extends AppController
             $cuentas = $this->loadModel("cuenta");
             if ($cuentas->guardar($_POST)) {
                 $this->_messages->success(
-                    'Cuenta guardada correctamente',
+                    'La cuenta se guardó correctamente',
                     $this->redirect(array("controller" => "cuentas"))
                 );
             }
@@ -56,7 +56,7 @@ class cuentasController extends AppController
 
             if (empty($_POST['name']) || $_POST['name'] == "") {
                 $this->_messages->success(
-                    'No ha definido la cuenta',
+                    'No ha llenado la información de la cuenta',
                     $this->redirect(array("controller" => "cuentas", "action" => "editar/" . $_POST['id']))
                 );
                 return;
@@ -64,11 +64,11 @@ class cuentasController extends AppController
 
             if ($cuenta->actualizar($_POST)) {
                 $this->_messages->success(
-                    'La cuenta se ha actualizado correctamente',
+                    'La cuenta se guardó correctamente',
                     $this->redirect(array("controller" => "cuentas"))
                 );
             } else {
-                $this->_view->flashMessage = "La cuenta no se actualizó";
+                $this->_view->flashMessage = "La cuenta no se guardó";
                 $this->redirect(array(
                         "controller" => "cuentas",
                         "action" => "editar/" . $id)
@@ -95,12 +95,12 @@ class cuentasController extends AppController
         if (!empty($registro)) {
             if ($cuenta->eliminarPorId($id)) {
                 $this->_messages->success(
-                    'La cuenta se ha eliminado correctamente',
+                    'La cuenta se eliminó correctamente',
                     $this->redirect(array("controller" => "cuentas"))
                 );
             } else {
                 $this->_messages->warning(
-                    'No se puede elimnar la cuenta',
+                    'La cuenta está en uso, no se puede eliminar',
                     $this->redirect(array("controller" => "cuentas"))
                 );
             }

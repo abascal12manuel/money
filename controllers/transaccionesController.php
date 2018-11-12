@@ -26,7 +26,7 @@ class transaccionesController extends AppController
 
         	if (empty($_POST['description']) || $_POST['description'] == "") {
                 $this->_messages->warning(
-                    'No ha definido la transacción',
+                    'No ha llenado la información de la transacción',
                     $this->redirect(array("controller"=>"transacciones", "action" => "agregar"))
                 );
                 return;
@@ -34,7 +34,7 @@ class transaccionesController extends AppController
             $transacciones = $this->loadModel("transaccion");
             if ($transacciones->add($_POST)) {
                 $this->_messages->success(
-                    'Transacción guardada correctamente',
+                    'La transacción se guardó correctamente',
                     $this->redirect(array("controller"=>"transacciones"))
                 );
             }
@@ -56,11 +56,11 @@ class transaccionesController extends AppController
             $transaccion = $this->loadModel("transaccion");
             if ($transaccion->edit($_POST)) {
                 $this->_messages->success(
-                    'La transacción se ha actualizado correctamente',
+                    'La transacción se guardó correctamente',
                     $this->redirect(array("controller"=>"transacciones"))
                 );
             } else {
-               $this->_view->flashMessage = "La cuenta no se actualizó";
+               $this->_view->flashMessage = "La cuenta no se guardó";
                $this->redirect(array(
                     "controller"=>"transacciones",
                     "action"=>"editar/".$id)
@@ -90,7 +90,7 @@ class transaccionesController extends AppController
         if (!empty($registro)) {
             $transaccion->delete($id);
             $this->_messages->success(
-                    'La transacción se ha eliminado correctamente',
+                    'La transacción se eliminó correctamente',
                     $this->redirect(array("controller"=>"transacciones"))
                 );
         }

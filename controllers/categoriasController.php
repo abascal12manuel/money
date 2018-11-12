@@ -29,7 +29,7 @@ class categoriasController extends AppController
         if ($_POST) {
             if (empty($_POST['name']) || $_POST['name'] == "") {
                 $this->_messages->warning(
-                    'No ha definido la categoría',
+                    'No ha llenado la información de la categoría',
                     $this->redirect(array("controller" => "categorias", "action" => "agregar"))
                 );
                 return;
@@ -38,7 +38,7 @@ class categoriasController extends AppController
             $categorias = $this->loadModel("categoria");
             if ($categorias->guardar($_POST)) {
                 $this->_messages->success(
-                    'Categoría guardada correctamente',
+                    'La categoría se guardó correctamente',
                     $this->redirect(array("controller" => "categorias"))
                 );
             }
@@ -58,7 +58,7 @@ class categoriasController extends AppController
 
             if (empty($_POST['name']) || $_POST['name'] == "") {
                 $this->_messages->success(
-                    'No ha definido la categoría',
+                    'No ha llenado la información de la categoría',
                     $this->redirect(array("controller" => "categorias", "action" => "editar/" . $_POST['id']))
                 );
                 return;
@@ -66,11 +66,11 @@ class categoriasController extends AppController
 
             if ($categoria->actualizar($_POST)) {
                 $this->_messages->success(
-                    'La categoría se ha actualizado correctamente',
+                    'La categoría se guardó correctamente',
                     $this->redirect(array("controller" => "categorias"))
                 );
             } else {
-                $this->_view->flashMessage = "La categoría no se actualizó";
+                $this->_view->flashMessage = "La categoría no se guardó";
                 $this->redirect(array(
                         "controller" => "categorias",
                         "action" => "editar/" . $id)
@@ -98,12 +98,12 @@ class categoriasController extends AppController
         if (!empty($registro)) {
             if ($categoria->eliminarPorId($id)) {
                 $this->_messages->success(
-                    'La categoría se ha eliminado correctamente',
+                    'La categoría se eliminó correctamente',
                     $this->redirect(array("controller" => "categorias"))
                 );
             } else {
                 $this->_messages->warning(
-                    'No se puede eliminar la categoría',
+                    'La categoría está en uso, no se puede eliminar',
                     $this->redirect(array("controller" => "categorias"))
                 );
             }
